@@ -13,6 +13,10 @@ struct Tarea{
 };
 typedef struct Tarea **Lista;
 
+//Defincion de funciones
+
+void BusquedaPorPalabra(Lista tareasRealizadas, Lista listas, char*palabra,int cantidad,int desc);
+
 //Funcion principal
 int main(){
 
@@ -20,8 +24,9 @@ int main(){
 
 srand(time(NULL));
 Lista listas, tareasRealizadas;
-int cant, resp;
+int cant, resp,desicion,desicion2;
 char *buff;
+char aux[100];
 
 //Cantidad de tareas a realizar
 printf("Ingrese la cantidad de tareas a realizar: ");
@@ -84,5 +89,53 @@ for (int i = 0; i < cant; i++)
         puts(tareasRealizadas[i]->Descripcion);
     }
 }
+
+printf("\n\n");
+//Implementar funcion Busca por palabra
+puts("Desea buscar alguna tarea?(Ingrese 1 para si, 0 para no): ");
+scanf("%d",&desicion );
+if (desicion==1)
+{
+    puts("Su tarea fue realizada(1) o esta pendiente(0)?: ");
+    scanf("%d", &desicion2);
+    fflush(stdin);
+    printf("Ingresar palabra clave: ");
+    gets(aux);
+    fflush(stdin);
+    BusquedaPorPalabra(tareasRealizadas, listas,aux,cant,desicion2);
+}else{
+    puts("------Fin del programa------");
+}
+
     return 0;
 }
+
+
+//Definicion de funciones
+void BusquedaPorPalabra(Lista tareasRealizadas, Lista listas, char*palabra,int cantidad, int desc){
+      if (desc==1)
+    {
+        for (int i = 0; i < cantidad; i++)
+        {
+                if(strstr(tareasRealizadas[i]->Descripcion, palabra)){
+                    printf("\nID de la tarea: %d", tareasRealizadas[i]->TareaID);
+                    printf("\n Duracion de la tarea: %d", tareasRealizadas[i]->Duracion);
+                    printf("\nDescripcion de la tarea: ");
+                    puts(tareasRealizadas[i]->Descripcion);
+                    
+                }
+        }
+    }else{
+        
+            for (int i = 0; i < cantidad; i++){
+                    if (strstr(listas[i]->Descripcion, palabra)){
+                        printf("\nID de la tarea: %d", listas[i]->TareaID);
+                        printf("\n Duracion de la tarea: %d", listas[i]->Duracion);
+                        printf("\nDescripcion de la tarea: ");
+                        puts(listas[i]->Descripcion);
+                      
+                    }
+            }
+       }
+}
+
