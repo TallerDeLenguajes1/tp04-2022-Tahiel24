@@ -58,7 +58,7 @@ int main()
 
     for (int i = 0; i < cant; i++)
     {
-        printf("\nRealizo la tarea N %d?(1 para Si, 0 para No): ", listas[i]->TareaID);
+        printf("\nRealizo la tarea N %d?(1 para Si, 0 para No): ",i+1) ;
         scanf("%d", &resp);
 
         if (resp == 1)
