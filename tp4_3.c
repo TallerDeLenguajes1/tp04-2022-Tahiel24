@@ -167,6 +167,8 @@ int main()
         tareasRealizadas = borrarPrimerNodo(tareasRealizadas);
     }
 
+    //FINAL DEL PROGRAMA
+
     return 0;
 }
 
